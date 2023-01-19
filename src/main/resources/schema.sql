@@ -1,6 +1,6 @@
-create schema homework2;
+create schema if not exists homework2;
 
-create table homework2.CUSTOMERS
+create table if not exists homework2.CUSTOMERS
 (
     id           int auto_increment primary key,
     name         char(20) not null check ( name != ''),
@@ -10,7 +10,7 @@ create table homework2.CUSTOMERS
 );
 
 
-create table homework2.ORDERS
+create table if not exists homework2.ORDERS
 (
     id           int auto_increment primary key,
     date         timestamp not null,
