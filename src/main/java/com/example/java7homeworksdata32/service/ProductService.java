@@ -16,8 +16,4 @@ public class ProductService {
     public String getProductName(String name) {
         return productRepository.getProductName(name);
     }
-
-    public List<String> getProductName1(String name) {
-        return productRepository.getProductName1(name);
-    }
 }
