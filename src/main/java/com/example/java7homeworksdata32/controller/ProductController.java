@@ -21,4 +21,11 @@ public class ProductController {
     public String getProduct(@RequestParam("name") String name) {
         return productService.getProductName(name);
     }
+
+
+
+    @GetMapping("/1")
+    public void getProduct1() {
+        productService.productForOrders();
+    }
 }

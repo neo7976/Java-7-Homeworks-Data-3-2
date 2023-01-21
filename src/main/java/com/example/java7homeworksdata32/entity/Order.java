@@ -8,6 +8,7 @@ import org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import java.sql.Date;
 import java.sql.Time;
 
 @Entity
@@ -22,9 +23,9 @@ public class Order {
     private int id;
 
     @Column(nullable = false)
-    private Time data;
+    private Date date;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
 //    @Column(nullable = false, name = "customers_id")
     private Customer customer;
 

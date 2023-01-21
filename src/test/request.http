@@ -1,0 +1,13 @@
+GET http://localhost:8081/product/fetch-product?name=Ivan
+Accept: application/json
+
+###
+GET http://localhost:8081/product/fetch-product-one?name=Alex
+Accept: application/json
+
+###
+
+GET http://localhost:8081/product/1
+Accept: application/json
+
+###

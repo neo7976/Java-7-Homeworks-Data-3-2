@@ -16,4 +16,8 @@ public class ProductService {
     public String getProductName(String name) {
         return productRepository.getProductName(name);
     }
+
+    public void productForOrders() {
+        productRepository.productForOrders();
+    }
 }
