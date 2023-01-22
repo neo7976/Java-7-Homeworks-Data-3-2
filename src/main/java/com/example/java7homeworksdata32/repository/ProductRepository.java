@@ -12,15 +12,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.sql.Date;
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
 public class ProductRepository {
     private final String myScriptName = "myScript.sql";
-    //        private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -39,14 +37,12 @@ public class ProductRepository {
 
     @Transactional
     public void productForOrders() {
-//        var dateOrder = dtf.format(LocalDate.now());
         var customer = entityManager.find(Customer.class, 2);
         System.out.println(customer);
         var order = Order.builder()
                 .amount(10)
                 .productName("Молоко")
-                .date(Date.valueOf(LocalDate.now()))
-//                .date(Date.valueOf(dateOrder))
+                .date(Instant.now())
                 .customer(customer)
                 .build();
 

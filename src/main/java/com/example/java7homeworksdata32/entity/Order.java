@@ -4,12 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import java.sql.Date;
-import java.sql.Time;
+import java.time.Instant;
 
 @Entity
 @Table(name = "orders")
@@ -23,7 +21,7 @@ public class Order {
     private int id;
 
     @Column(nullable = false)
-    private Date date;
+    private Instant date;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "customers_id")
