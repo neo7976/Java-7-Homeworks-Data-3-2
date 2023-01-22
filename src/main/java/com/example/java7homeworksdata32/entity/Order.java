@@ -31,6 +31,5 @@ public class Order {
     private String productName;
 
     @Column(nullable = false)
-    @Min(1)
     private int amount;
 }

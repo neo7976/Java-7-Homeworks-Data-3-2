@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 
 @Entity
 @Data
@@ -19,15 +18,17 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private String surname;
-    @Min(0)
+
     @Column(nullable = false)
     private int age;
 
     @Column(nullable = false, name = "phone_number", length = 10, unique = true)
     private String phoneNumber;
 }
+
+
