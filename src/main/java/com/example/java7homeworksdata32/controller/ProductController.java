@@ -18,12 +18,7 @@ public class ProductController {
     }
 
     @GetMapping("/fetch-product")
-    public String getProduct(@RequestParam("name") String name) {
-        return productService.getProductName(name);
-    }
-
-    @GetMapping("/fetch-product-one")
     public List<String> getProduct1(@RequestParam("name") String name) {
-        return productService.getProductName1(name);
+        return productService.getProductName(name);
     }
 }

@@ -2,6 +2,7 @@ package com.example.java7homeworksdata32.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -18,9 +19,11 @@ import java.util.stream.Collectors;
 public class ProductRepository {
     private final String myScriptName = "myScript.sql";
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final String myScript;
 
     public ProductRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+        this.myScript = read(myScriptName);
     }
 
     private static String read(String scriptFileName) {
@@ -32,18 +35,11 @@ public class ProductRepository {
         }
     }
 
-    public String getProductName(String name) {
-        var arguments = new HashMap<String, String>();
-        arguments.put("name", name);
-        var result = namedParameterJdbcTemplate.queryForObject(
-                read(myScriptName),
-                arguments, (rs, rowNum) -> rs.getString("product_name"));
-        return result;
-    }
-
     public List<String> getProductName1(String name) {
         return namedParameterJdbcTemplate.queryForList(
-                read(myScriptName), Map.of("name", name), String.class);
+                myScript,
+                new MapSqlParameterSource("name", name),
+                String.class);
 
     }
 

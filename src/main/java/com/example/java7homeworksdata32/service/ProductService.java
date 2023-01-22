@@ -13,11 +13,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public String getProductName(String name) {
-        return productRepository.getProductName(name);
-    }
-
-    public List<String> getProductName1(String name) {
+    public List<String> getProductName(String name) {
         return productRepository.getProductName1(name);
     }
 }
