@@ -1,5 +1,6 @@
 package com.example.java7homeworksdata32.controller;
 
+import com.example.java7homeworksdata32.entity.Customer;
 import com.example.java7homeworksdata32.service.ProductService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +19,9 @@ public class ProductController {
     }
 
     @GetMapping("/fetch-product")
-    public String getProduct(@RequestParam("name") String name) {
+    public List<String> getProduct(@RequestParam("name") String name) {
         return productService.getProductName(name);
     }
-
 
 
     @GetMapping("/1")

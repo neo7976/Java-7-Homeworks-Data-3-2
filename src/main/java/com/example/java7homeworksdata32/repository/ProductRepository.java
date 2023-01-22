@@ -24,15 +24,10 @@ import java.util.stream.Collectors;
 @Repository
 public class ProductRepository {
     private final String myScriptName = "myScript.sql";
+    private final String MY_QUERY = "1";
     //        private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     @PersistenceContext
     private EntityManager entityManager;
-//    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-//
-//    public ProductRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-//        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-//    }
-
 
     public ProductRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -63,24 +58,14 @@ public class ProductRepository {
         entityManager.persist(order);
     }
 
-//    public String getProductName(String name) {
-//        var arguments = new HashMap<String, String>();
-//        arguments.put("name", name);
-//        var result = namedParameterJdbcTemplate.queryForObject(
-//                read(myScriptName),
-//                arguments, (rs, rowNum) -> rs.getString("product_name"));
-//        return result;
-//    }
-
-    //    public List<String> getProductName1(String name) {
-//        return namedParameterJdbcTemplate.queryForList(
-//                read(myScriptName), Map.of("name", name), String.class);
-//
-//    }
     @Transactional
-    public String getProductName(String name) {
-//        var result = ;
-        return null;
+    public List<String> getProductName(String name) {
+
+//        var result = entityManager.createQuery(read(myScriptName)).setParameter("name", name);
+        var result = entityManager.createQuery(
+                "select O.productName from Order o join Customer C on C.id = O.customer where lower(C.name) = :name")
+                .setParameter("name", name);
+        return result.getResultList();
     }
 
 }

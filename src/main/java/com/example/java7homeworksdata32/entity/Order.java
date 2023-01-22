@@ -26,7 +26,7 @@ public class Order {
     private Date date;
 
     @ManyToOne(optional = false)
-//    @Column(nullable = false, name = "customers_id")
+    @JoinColumn(nullable = false, name = "customers_id")
     private Customer customer;
 
     @Column(nullable = false, name = "product_name")
@@ -35,6 +35,4 @@ public class Order {
     @Column(nullable = false)
     @Min(1)
     private int amount;
-
-
 }

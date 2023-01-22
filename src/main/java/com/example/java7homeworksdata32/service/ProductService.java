@@ -1,5 +1,6 @@
 package com.example.java7homeworksdata32.service;
 
+import com.example.java7homeworksdata32.entity.Customer;
 import com.example.java7homeworksdata32.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public String getProductName(String name) {
+    public List<String> getProductName(String name) {
         return productRepository.getProductName(name);
     }
 

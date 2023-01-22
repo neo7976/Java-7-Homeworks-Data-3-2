@@ -28,6 +28,6 @@ public class Customer {
     @Column(nullable = false)
     private int age;
 
-    @Column(nullable = false, name = "phone_number", length = 10)
+    @Column(nullable = false, name = "phone_number", length = 10, unique = true)
     private String phoneNumber;
 }
