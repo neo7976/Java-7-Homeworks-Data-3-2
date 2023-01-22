@@ -3,7 +3,6 @@ package com.example.java7homeworksdata32.repository;
 import com.example.java7homeworksdata32.entity.Customer;
 import com.example.java7homeworksdata32.entity.Order;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -15,16 +14,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Repository
 public class ProductRepository {
     private final String myScriptName = "myScript.sql";
-    private final String MY_QUERY = "1";
     //        private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     @PersistenceContext
     private EntityManager entityManager;
@@ -61,9 +56,8 @@ public class ProductRepository {
     @Transactional
     public List<String> getProductName(String name) {
 
-//        var result = entityManager.createQuery(read(myScriptName)).setParameter("name", name);
         var result = entityManager.createQuery(
-                "select O.productName from Order o join Customer C on C.id = O.customer where lower(C.name) = :name")
+                "select O.productName from Order O join Customer C on C.id = O.customer where lower(C.name) = :name")
                 .setParameter("name", name);
         return result.getResultList();
     }

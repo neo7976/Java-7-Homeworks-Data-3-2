@@ -25,7 +25,7 @@ public class Order {
     @Column(nullable = false)
     private Date date;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "customers_id")
     private Customer customer;
 
