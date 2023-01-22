@@ -19,7 +19,6 @@ values ('Vlad', 'Грачев', 34, '9857852629');
 insert into customers(name, surname, age, phone_number)
 values ('Igor', 'Козлов', 28, '9857851285');
 
-
 insert into orders(date, customers_id, product_name, amount)
 values ('2023.01.10 10.15.10', 7, 'Молоко', 4);
 insert into orders(date, customers_id, product_name, amount)
