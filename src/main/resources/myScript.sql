@@ -1,1 +1,1 @@
-select product_name from homework2.ORDERS O join homework2.CUSTOMERS C on C.id = O.customers_id where lower(name) = :name;
+select product_name from homework4.orders O join homework4.customers C on C.id = O.customers_id where lower(name) = :name;
