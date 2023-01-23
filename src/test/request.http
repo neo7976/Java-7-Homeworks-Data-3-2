@@ -1,3 +1,25 @@
+POST http://localhost:8081/product/add-product
+Content-Type: application/json
+
+{
+  "productName": "Молоко",
+  "amount": 5,
+  "customerPhoneNumber" : "9857851279"
+}
+###
+
+POST http://localhost:8081/product/add-product
+Content-Type: application/json
+
+{
+  "productName": "Печень",
+  "amount": 4,
+  "customerPhoneNumber" : "9898851279"
+}
+###
+
+
+
 GET http://localhost:8081/product/fetch-product?name=Ivan
 Accept: application/json
 
@@ -7,7 +29,3 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8081/product/1
-Accept: application/json
-
-###

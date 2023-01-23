@@ -2,6 +2,7 @@ package com.example.java7homeworksdata32.repository;
 
 import com.example.java7homeworksdata32.entity.Customer;
 import com.example.java7homeworksdata32.entity.Order;
+import com.example.java7homeworksdata32.model.ProductOrder;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
@@ -18,7 +19,6 @@ import java.util.stream.Collectors;
 
 @Repository
 public class ProductRepository {
-    private final String myScriptName = "myScript.sql";
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -26,36 +26,38 @@ public class ProductRepository {
         this.entityManager = entityManager;
     }
 
-    private static String read(String scriptFileName) {
-        try (InputStream is = new ClassPathResource(scriptFileName).getInputStream();
-             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is))) {
-            return bufferedReader.lines().collect(Collectors.joining("\n"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Transactional
-    public void productForOrders() {
-        var customer = entityManager.find(Customer.class, 2);
-        System.out.println(customer);
-        var order = Order.builder()
-                .amount(2)
-                .productName("Молоко")
-                .date(Instant.now())
-                .customer(customer)
-                .build();
-
-        entityManager.persist(order);
-    }
+//    private static String read(String scriptFileName) {
+//        try (InputStream is = new ClassPathResource(scriptFileName).getInputStream();
+//             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is))) {
+//            return bufferedReader.lines().collect(Collectors.joining("\n"));
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     @Transactional
     public List<String> getProductName(String name) {
 
         var result = entityManager.createQuery(
-                "select O.productName from Order O join Customer C on C.id = O.customer where lower(C.name) = :name")
+                        "select O.productName from Order O join Customer C on C.id = O.customer where lower(C.name) = :name")
                 .setParameter("name", name);
         return result.getResultList();
     }
 
+    @Transactional
+    public Order addProduct(ProductOrder productOrder) {
+        var findCustomer = entityManager.createQuery(
+                        "select C FROM Customer C where C.phoneNumber = :phoneNumber")
+                .setParameter("phoneNumber", productOrder.getCustomerPhoneNumber()).getSingleResult();
+
+        var order = Order.builder()
+                .productName(productOrder.getProductName())
+                .amount(productOrder.getAmount())
+                .customer((Customer) findCustomer)
+                .date(Instant.now())
+                .build();
+
+       entityManager.persist(order);
+       return order;
+    }
 }

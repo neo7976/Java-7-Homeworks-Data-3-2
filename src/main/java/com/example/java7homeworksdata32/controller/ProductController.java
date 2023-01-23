@@ -1,11 +1,10 @@
 package com.example.java7homeworksdata32.controller;
 
-import com.example.java7homeworksdata32.entity.Customer;
+import com.example.java7homeworksdata32.entity.Order;
+import com.example.java7homeworksdata32.model.ProductOrder;
 import com.example.java7homeworksdata32.service.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,9 +22,8 @@ public class ProductController {
         return productService.getProductName(name);
     }
 
-
-    @GetMapping("/1")
-    public void getProduct1() {
-        productService.productForOrders();
+    @PostMapping("/add-product")
+    public Order addProduct(@RequestBody @Validated ProductOrder productOrder) {
+        return productService.addProduct(productOrder);
     }
 }
