@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 @Entity
 @Data
@@ -24,6 +25,7 @@ public class Customer {
     @Column(nullable = false, length = 20)
     private String surname;
 
+    @Min(0)
     @Column(nullable = false)
     private int age;
 

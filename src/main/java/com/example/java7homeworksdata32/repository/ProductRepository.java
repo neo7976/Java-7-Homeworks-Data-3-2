@@ -40,7 +40,7 @@ public class ProductRepository {
         var customer = entityManager.find(Customer.class, 2);
         System.out.println(customer);
         var order = Order.builder()
-                .amount(10)
+                .amount(2)
                 .productName("Молоко")
                 .date(Instant.now())
                 .customer(customer)

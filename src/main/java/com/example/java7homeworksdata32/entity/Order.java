@@ -30,6 +30,7 @@ public class Order {
     @Column(nullable = false, name = "product_name")
     private String productName;
 
+    @Min(1)
     @Column(nullable = false)
     private int amount;
 }

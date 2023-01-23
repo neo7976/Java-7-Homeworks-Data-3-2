@@ -1,4 +1,4 @@
-# create schema if not exists homework2;
+create schema if not exists homework4;
 #
 # create table if not exists homework2.CUSTOMERS
 # (

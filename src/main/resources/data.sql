@@ -36,7 +36,7 @@ values ('2023.01.12 12.17.10', 10, 'Хлеб', 2);
 insert into orders(date, customers_id, product_name, amount)
 values ('2023.01.12 13.54.25', 3, 'Кола', 10);
 insert into orders(date, customers_id, product_name, amount)
-values ('2023.01.12 13.58.54', 7, 'Кола', 5);
+values ('2023.01.12 13.58.54', 7, 'Кола', -1);
 
 update orders
 set date='2023.01.11 10.17.15',
